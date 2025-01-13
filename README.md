@@ -1,33 +1,102 @@
-# Chrono-Nexus
+# Chrono Nexus
 
-This template should help get you started developing with Vue 3 in Vite.
+connect time across global horizons by simplifying the complexities of international time zone management.
 
-## Recommended IDE Setup
+A production-grade single page app for time zone management.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Table of content 📋
 
-## Type Support for `.vue` Imports in TS
+- [Chrono-Nexus 🌤️](#Chrono-Nexus-️)
+  - [Table of content 📋](#table-of-content-)
+  - [Features 🚀](#features-)
+  - [Future Roadmap 🗺️](#future-roadmap-️)
+  - [Getting Started 🚩](#getting-started-)
+    - [Locally 🖥️](#locally-️)
+      - [Development 👨‍💻](#development-)
+      - [Production 🏭](#production-)
+    - [Docker 🐋](#docker-)
+      - [Development 👨‍💻](#development--1)
+      - [Production 🏭](#production--1)
+  - [Testing 🧪](#testing-)
+    - [Unit Testing 🔎](#unit-testing-)
+    - [End-To-End Testing 🎭](#end-to-end-testing-)
+  - [Project Structure 📂](#project-structure-)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Features 🚀
 
-## Customize configuration
+inspired by [world-time-buddy](https://www.worldtimebuddy.com/)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- search
+- multi-location
 
-## Project Setup
+## Future Roadmap 🗺️
 
-```sh
-npm install
-```
+- E2E Testing (in progress)
+- Vitest
+- CI/CD
 
-### Compile and Hot-Reload for Development
+## Getting Started 🚩
 
-```sh
-npm run dev
-```
+We provide two ways one using docker with minimal setup or locally if you don't get comfortable with containers. both provide production and development environments.
 
-### Type-Check, Compile and Minify for Production
+### Locally 🖥️
 
-```sh
+Start by installing [nodejs](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs)
+
+#### Development 👨‍💻
+
+1. run `npm install` at the root of the project
+2. run `npm run dev`
+
+#### Production 🏭
+
+for a production build use
+
+```bash
 npm run build
+npm run preview
+```
+
+### Docker 🐋
+
+start by downloading [Docker](https://www.docker.com/get-started/)
+
+#### Development 👨‍💻
+
+Uses a nodejs container image and runs the app on the vite development server
+
+```bash
+docker compose -f .\docker-compose.dev.yml up --build --watch
+```
+
+#### Production 🏭
+
+Uses a multi-stage image building process starting from nodejs image to generate the build, and then uses [goStatic](https://github.com/PierreZ/goStatic) image as a static web server built with Go. It's commonly used with the Jamstack although it's an SPA using Vue.
+
+```bash
+docker compose up
+```
+
+## Testing 🧪
+
+### Unit Testing 🔎
+
+vitest
+
+### End-To-End Testing 🎭
+
+
+## Project Structure 📂
+
+```
+Chrono-Nexus
+├── src
+├── dist                             static site built files (git ignored)
+├── .gitignore                       files to ignore in the VCS
+├── .dockerignore                    files to ignroe during docker building process
+├── dev.Dockerfile                   Image for running the development server
+├── docker-compose.dev.yml           development compose file
+├── Dockerfile                       The production container image of the server
+├── Dockerfile                       production compose file
+└── index.html
 ```
